@@ -1,3 +1,6 @@
+const Converter = require("./coverter");
+const { writeFile } = require("fs-extra");
+
 class sticker {
   constructor(image) {
     this.image = image || null;
@@ -69,6 +72,11 @@ class sticker {
     if (!this.result) await this.build();
     if (!path) path = this.defaultFilename();
     return writeFile(path, this.result);
+  };
+
+  toMessage = async () => {
+    if (!this.result) await this.build();
+    return { sticker: this.result };
   };
 }
 module.exports = sticker;
