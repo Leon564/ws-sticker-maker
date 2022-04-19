@@ -60,5 +60,15 @@ class sticker {
     if (!this.result) await this.build();
     return this.result;
   };
+
+  defaultFilename() {
+    return `./${this.pack}-${this.author}.webp`;
+  }
+
+  toFile = async (path) => {
+    if (!this.result) await this.build();
+    if (!path) path = this.defaultFilename();
+    return writeFile(path, this.result);
+  };
 }
 module.exports = sticker;
