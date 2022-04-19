@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/Leon564/ws-sticker-maker/issues"
   },
-  "homepage": "https://github.com/Leon564/ws-sticker-maker#readme"
+  "homepage": "https://github.com/Leon564/ws-sticker-maker#readme",
+  "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "fluent-ffmpeg": "^2.1.2",
+    "fs-extra": "^10.1.0",
+    "os": "^0.1.2"
+  }
 }
