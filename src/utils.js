@@ -1,3 +1,5 @@
+const { randomBytes } = require("crypto");
+
 const getFileType = async (data) => {
   const { fileTypeFromBuffer, fileTypeFromFile } = await import("file-type");
 
@@ -13,8 +15,9 @@ const getFileType = async (data) => {
   return type;
 };
 
-
+const generateStickerID = () => randomBytes(32).toString("hex");
 
 module.exports = {
   getFileType,
+  generateStickerID,
 };
