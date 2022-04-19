@@ -55,5 +55,10 @@ class sticker {
     this.result = await new Converter(options).convert();
     return this;
   };
+
+  toBuffer = async () => {
+    if (!this.result) await this.build();
+    return this.result;
+  };
 }
 module.exports = sticker;
