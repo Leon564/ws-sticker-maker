@@ -1,2 +1,2 @@
 exports.Sticker=require('./dist/index');
-exports.stickerType=require('./dist/metadata/stickerTypes');
+exports.stickerTypes=require('./dist/metada/stickerTypes');
