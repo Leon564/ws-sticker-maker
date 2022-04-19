@@ -1,0 +1,1 @@
+exports.Sticker=require('./dist/index');
