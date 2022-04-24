@@ -1,4 +1,4 @@
-# Kurisu-Bot
+# ws-sticker-maker
 This project is made using [Node.js](https://nodejs.org/en/), [sharp](https://github.com/lovell/sharp) and [FFmpeg](https://ffmpeg.org/).
 
 ***
