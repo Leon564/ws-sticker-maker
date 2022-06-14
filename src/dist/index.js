@@ -65,7 +65,7 @@ class sticker {
   };
 
   defaultFilename() {
-    return `./${this.pack}-${this.author}.webp`;
+    return `./${this.pack || "sticker"}-${this.author || "WSM"}.webp`;
   }
 
   toFile = async (path) => {
