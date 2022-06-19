@@ -1,6 +1,6 @@
 {
   "name": "ws-sticker-maker",
-  "version": "1.0.0",
+  "version": "1.2.1",
   "description": "whatsApp sticker maker",
   "main": "src/index.js",
   "scripts": {

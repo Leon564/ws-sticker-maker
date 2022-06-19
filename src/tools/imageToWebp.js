@@ -3,13 +3,15 @@ const cropVideo = require("./cropVideo");
 const stickerTypes = require("../dist/metadata/stickerTypes");
 const videoToGif = require("./videoToGif");
 
-const towebp = async (options) => {  
+const towebp = async (options) => {
   if (options.isAnimated && ["crop", "circle"].includes(options.type)) {
     options.image = await cropVideo(options.image, options.fps);
     options.type =
-      options.type === "circle" ? stickerTypes.CIRCLE : stickerTypes.DEFAULT;
-  } else if (options.isAnimated && options?.FileMime?.includes("video")) {    
+      options.type === "circle" ? stickerTypes.CIRCLE : stickerTypes.CROPPED;      
+  } else if (options.isAnimated && options?.FileMime?.includes("video")) {
     options.image = await videoToGif(options.image, options.fps);
+    options.type =
+      options.type == "default" ? stickerTypes.CROPPED : options.type;
   }
   const img = sharp(options.image, {
     animated: options.isAnimated ?? false,
@@ -40,7 +42,7 @@ const towebp = async (options) => {
         },
       ]);
   }
-
+  
   return await img
     .webp({
       effort: 6,
