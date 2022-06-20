@@ -2,10 +2,11 @@ const ffmpegPath = require("@ffmpeg-installer/ffmpeg").path;
 const ffmpeg = require("fluent-ffmpeg");
 ffmpeg.setFfmpegPath(ffmpegPath);
 const { tmpdir } = require("os");
-const { readFileSync, writeFileSync, unlinkSync } = require("fs-extra");
+const { readFileSync, writeFileSync, unlinkSync, statSync } = require("fs-extra");
 
-const videoToGif = async (file, fps) => {
-  let isBuffer = Buffer.isBuffer(file);
+const videoToGif = async ({image, fps, size}) => {  
+  let file = image;
+  const isBuffer = Buffer.isBuffer(file);
   if (isBuffer) {
     const tempFile = tmpdir() + "/" + Date.now() + ".video";
     writeFileSync(tempFile, file);
@@ -17,11 +18,14 @@ const videoToGif = async (file, fps) => {
     fm.input(file)
       .noAudio()
       .keepDAR()
-      .videoFilter(["scale=512:-1"])
-      .output(dir)
-      .outputOptions(["-vf", `fps=${fps || 10}`, "-fs", "1MB"])
+      .size((size||"250")+"x?")
+      .aspect("1:1")      
+      .fps(fps||16)     
+      .outputOptions(["-fs","1000000"])    
+      .output(dir)    
+      .format("gif")  
       .on("end", () => {
-        let gif = readFileSync(dir);
+        const gif = readFileSync(dir);     
         unlinkSync(dir);
         if (isBuffer) unlinkSync(file);
         return resolve(gif);

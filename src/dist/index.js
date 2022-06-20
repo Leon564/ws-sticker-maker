@@ -41,10 +41,19 @@ class sticker {
     this.categories = Array.isArray(categories) ? categories : [];
     return this;
   }
+  setEffort(effort) {
+    this.effort = effort;
+    return this;
+  }
+  setSize(size) {
+    this.size = size;
+    return this;
+  }
 
   build = async () => {
     if (!this.image) throw new Error("image is required");
-    let options = {
+
+    this.result = await new Converter({
       image: this.image,
       author: this.author || "",
       pack: this.pack || "",
@@ -54,8 +63,10 @@ class sticker {
       background: this.background || { r: 0, g: 0, b: 0, alpha: 0 },
       fps: this.fps || 10,
       categories: this.categories || [],
-    };
-    this.result = await new Converter(options).convert();
+      effort: this.effort || 0,
+      size: this.size || 250,
+    }).convert();
+
     return this;
   };
 
@@ -70,7 +81,7 @@ class sticker {
 
   toFile = async (path) => {
     if (!this.result) await this.build();
-    if (!path) path = this.defaultFilename();
+    const pathName = path || this.defaultFilename();
     return writeFile(path, this.result);
   };
 
