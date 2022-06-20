@@ -5,11 +5,11 @@ const videoToGif = require("./videoToGif");
 
 const towebp = async (options) => {
   if (options.isAnimated && ["crop", "circle"].includes(options.type)) {
-    options.image = await cropVideo(options.image, options.fps);
+    options.image = await cropVideo(options);
     options.type =
       options.type === "circle" ? stickerTypes.CIRCLE : stickerTypes.CROPPED;      
   } else if (options.isAnimated && options?.FileMime?.includes("video")) {
-    options.image = await videoToGif(options.image, options.fps);
+    options.image = await videoToGif(options);
     options.type =
       options.type == "default" ? stickerTypes.CROPPED : options.type;
   }
@@ -45,7 +45,7 @@ const towebp = async (options) => {
   
   return await img
     .webp({
-      effort: 6,
+      effort: options.effort || 0,
       quality: options.quality ?? 50,
       lossless: false,
     })

@@ -4,31 +4,32 @@ ffmpeg.setFfmpegPath(ffmpegPath);
 const { tmpdir } = require("os");
 const { readFileSync, writeFileSync, unlinkSync } = require("fs-extra");
 
-const crop = async (file, fps) => {
-  let isBuffer = Buffer.isBuffer(file);
+const crop = async ({image, fps, size}) => {
+  let file = image;
+  const isBuffer = Buffer.isBuffer(file);
   if (isBuffer) {
     const tempFile = tmpdir() + "/" + Date.now() + ".video";
     writeFileSync(tempFile, file);
     file = tempFile;
   }
-  const dir = `${tmpdir()}/${Date.now()}.gif`;
+  const dir = `${tmpdir()}/${Date.now()}.webp`;
   const fm = new ffmpeg();
   return new Promise((resolve, reject) => {
     fm.input(file)
-      .keepDAR()      
-      .outputOptions([
-        "-vf",
-        `crop=w='min(min(iw\,ih)\,500)':h='min(min(iw\,ih)\,500)',scale=500:500,setsar=1,fps=${
-          fps || 10
-        }`,
-        "-fs",
-        "1MB",
-        "-s",
-        "512:512",
+      .keepDAR()
+      .noAudio()
+      .fps(fps || 16)
+      .size((size || "250") + "x?")
+      .aspect("1:1")
+      .keepDAR()
+      .videoFilters([
+        `crop=w='min(min(iw\,ih)\,512)':h='min(min(iw\,ih)\,512)'`,
       ])
+      .format("webp")
+      .outputOptions(["-fs", "1000000"])
       .output(dir)
       .on("end", () => {
-        let gif = readFileSync(dir);
+        const gif = readFileSync(dir);
         unlinkSync(dir);
         if (isBuffer) unlinkSync(file);
         return resolve(gif);
