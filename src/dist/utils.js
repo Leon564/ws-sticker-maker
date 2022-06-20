@@ -18,7 +18,7 @@ const getFileType = async (data) => {
 const generateStickerID = () => randomBytes(32).toString("hex");
 
 const onlyEmojis = (array) => {
-  var regex = /\p{Emoji}/u;
+  const regex = /\p{Emoji}/u;
   return array.filter((x) => x.match(regex));
 };
 

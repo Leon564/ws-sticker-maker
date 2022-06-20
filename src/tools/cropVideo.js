@@ -19,7 +19,7 @@ const crop = async ({image, fps, size}) => {
       .keepDAR()
       .noAudio()
       .fps(fps || 16)
-      .size((size || "250") + "x?")
+      .size((size || "512") + "x?")
       .aspect("1:1")
       .keepDAR()
       .videoFilters([

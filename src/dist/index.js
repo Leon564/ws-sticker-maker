@@ -64,7 +64,7 @@ class sticker {
       fps: this.fps || 10,
       categories: this.categories || [],
       effort: this.effort || 0,
-      size: this.size || 250,
+      size: this.size || 512,
     }).convert();
 
     return this;
