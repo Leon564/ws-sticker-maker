@@ -18,7 +18,7 @@ const videoToGif = async ({image, fps, size}) => {
     fm.input(file)
       .noAudio()
       .keepDAR()
-      .size((size||"250")+"x?")
+      .size((size||"512")+"x?")
       .aspect("1:1")      
       .fps(fps||16)     
       .outputOptions(["-fs","1000000"])    
