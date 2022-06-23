@@ -12,29 +12,30 @@ const videoToGif = async ({image, fps, size}) => {
     writeFileSync(tempFile, file);
     file = tempFile;
   }
-  const dir = `${tmpdir()}/${Date.now()}.gif`;
+  const dir = `${tmpdir()}/${Date.now()}.webp`;
   const fm = new ffmpeg();
-  return new Promise((resolve, reject) => {
+  await new Promise((resolve, reject) => {
     fm.input(file)
       .noAudio()
+      .fps(fps || 16)
+      .size((size || "512") + "x?")
       .keepDAR()
-      .size((size||"512")+"x?")
-      .aspect("1:1")      
-      .fps(fps||16)     
-      .outputOptions(["-fs","1000000"])    
-      .output(dir)    
-      .format("gif")  
+      .videoFilter([`scale=${size}:-1`])
+      .outputOptions([ "-fs", "500000"])      
+      .format("webp")
+      .output(dir)
       .on("end", () => {
-        const gif = readFileSync(dir);     
-        unlinkSync(dir);
-        if (isBuffer) unlinkSync(file);
-        return resolve(gif);
+        resolve(dir);
       })
       .on("error", (e) => {
         console.log(e);
-        return reject(e);
+        reject(e);
       })
       .run();
   });
+  const media = readFileSync(dir);
+  unlinkSync(dir);
+  if (isBuffer) unlinkSync(file);
+  return media;
 };
 module.exports = videoToGif;

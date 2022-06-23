@@ -1,17 +1,17 @@
 const sharp = require("sharp");
 const cropVideo = require("./cropVideo");
 const stickerTypes = require("../dist/metadata/stickerTypes");
-const videoToGif = require("./videoToGif");
+const videoToGif = require("./videoToWebp");
 
 const towebp = async (options) => {
-  if (options.isAnimated && ["crop", "circle"].includes(options.type)) {
+  if (
+    options.isAnimated &&
+    ["crop", "circle", "default"].includes(options.type)
+  ) {
     options.image = await cropVideo(options);
-    options.type =
-      options.type === "circle" ? stickerTypes.CIRCLE : stickerTypes.CROPPED;
+    return options.image;
   } else if (options.isAnimated && options?.FileMime?.includes("video")) {
     options.image = await videoToGif(options);
-    options.type =
-      options.type == "default" ? stickerTypes.CROPPED : options.type;
   }
   const img = sharp(options.image, {
     animated: options.isAnimated ?? false,
