@@ -4,7 +4,7 @@ ffmpeg.setFfmpegPath(ffmpegPath);
 const { tmpdir } = require("os");
 const { readFileSync, writeFileSync, unlinkSync } = require("fs-extra");
 
-const crop = async ({image, fps, size}) => {
+const crop = async ({ image, fps, size }) => {
   let file = image;
   const isBuffer = Buffer.isBuffer(file);
   if (isBuffer) {
@@ -14,31 +14,30 @@ const crop = async ({image, fps, size}) => {
   }
   const dir = `${tmpdir()}/${Date.now()}.webp`;
   const fm = new ffmpeg();
-  return new Promise((resolve, reject) => {
+  await new Promise((resolve, reject) => {
     fm.input(file)
-      .keepDAR()
       .noAudio()
       .fps(fps || 16)
       .size((size || "512") + "x?")
-      .aspect("1:1")
       .keepDAR()
       .videoFilters([
         `crop=w='min(min(iw\,ih)\,512)':h='min(min(iw\,ih)\,512)'`,
       ])
+      .outputOptions(["-fs", "750000"])
       .format("webp")
-      .outputOptions(["-fs", "1000000"])
       .output(dir)
       .on("end", () => {
-        const gif = readFileSync(dir);
-        unlinkSync(dir);
-        if (isBuffer) unlinkSync(file);
-        return resolve(gif);
+        resolve(dir);
       })
       .on("error", (e) => {
         console.log(e);
-        return reject(e);
+        reject(e);
       })
       .run();
   });
+  const media = readFileSync(dir);
+  unlinkSync(dir);
+  if (isBuffer) unlinkSync(file);
+  return media;
 };
 module.exports = crop;
