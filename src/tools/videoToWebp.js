@@ -4,7 +4,7 @@ ffmpeg.setFfmpegPath(ffmpegPath);
 const { tmpdir } = require("os");
 const { readFileSync, writeFileSync, unlinkSync, statSync } = require("fs-extra");
 
-const videoToGif = async ({image, fps, size}) => {  
+const videoToGif = async ({image, fps, size, duration}) => {  
   let file = image;
   const isBuffer = Buffer.isBuffer(file);
   if (isBuffer) {
@@ -20,8 +20,10 @@ const videoToGif = async ({image, fps, size}) => {
       .fps(fps || 16)
       .size((size || "512") + "x?")
       .keepDAR()
+      .videoCodec("libwebp")
+      .duration(duration || 10)
       .videoFilter([`scale=${size}:-1`])
-      .outputOptions([ "-fs", "500000"])      
+      .outputOptions([ "-fs", "800000"])      
       .format("webp")
       .output(dir)
       .on("end", () => {

@@ -49,6 +49,10 @@ class sticker {
     this.size = size;
     return this;
   }
+  setDuration(duration) {
+    this.duration = duration;
+    return this;
+  }
 
   build = async () => {
     if (!this.image) throw new Error("image is required");
@@ -65,6 +69,7 @@ class sticker {
       categories: this.categories || [],
       effort: this.effort || 0,
       size: this.size || 512,
+      duration: this.duration || 10,
     }).convert();
 
     return this;
