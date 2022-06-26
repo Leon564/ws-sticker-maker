@@ -53,6 +53,10 @@ class sticker {
     this.duration = duration;
     return this;
   }
+  setFileSize(fileSize) {
+    this.fileSize = typeof fileSize === "number" ? fileSize*1e+6 : 800000;
+    return this;
+  }
 
   build = async () => {
     if (!this.image) throw new Error("image is required");
@@ -70,6 +74,7 @@ class sticker {
       effort: this.effort || 0,
       size: this.size || 512,
       duration: this.duration || 10,
+      fileSize: this.fileSize || 800000,
     }).convert();
 
     return this;

@@ -4,7 +4,7 @@ ffmpeg.setFfmpegPath(ffmpegPath);
 const { tmpdir } = require("os");
 const { readFileSync, writeFileSync, unlinkSync } = require("fs-extra");
 
-const crop = async ({ image, fps, size, duration }) => {
+const crop = async ({ image, fps, size, duration, fileSize }) => {
   let file = image;
   const isBuffer = Buffer.isBuffer(file);
   if (isBuffer) {
@@ -25,7 +25,7 @@ const crop = async ({ image, fps, size, duration }) => {
       .videoFilters([
         `crop=w='min(min(iw\,ih)\,512)':h='min(min(iw\,ih)\,512)'`,
       ])
-      .outputOptions(["-fs", "800000"])
+      .outputOptions(["-fs", `${fileSize}`])
       .format("webp")
       .output(dir)
       .on("end", () => {
