@@ -6,11 +6,16 @@ const videoToGif = require("./videoToWebp");
 const towebp = async (options) => {
   if (
     options.isAnimated &&
-    ["crop", "circle", "default"].includes(options.type)
+    ["crop", "circle", "default"].includes(options.type) &&
+    options.ext !== "webp"
   ) {
     options.image = await cropVideo(options);
     return options.image;
-  } else if (options.isAnimated && options?.FileMime?.includes("video")) {
+  } else if (
+    options.isAnimated &&
+    options?.FileMime?.includes("video") &&
+    options.ext !== "webp"
+  ) {
     options.image = await videoToGif(options);
   }
   const img = sharp(options.image, {

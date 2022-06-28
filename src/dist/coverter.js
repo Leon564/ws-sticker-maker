@@ -23,6 +23,7 @@ module.exports = class converter {
     this.options.isAnimated = ["video", "webp", "gif", "webm", "mp4"].includes(
       ext
     );
+    this.options.ext = ext;
     this.options.FileMime = mime;
     const bufferWebp = await towebp(this.options);
 
