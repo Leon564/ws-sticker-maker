@@ -4,6 +4,9 @@ const stickerTypes = require("../dist/metadata/stickerTypes");
 const videoToGif = require("./videoToWebp");
 
 const towebp = async (options) => {
+  if (options.isAnimated && options?.FileMime?.includes("webp"))
+    return options.image;
+    
   if (
     options.isAnimated &&
     ["crop", "circle", "default"].includes(options.type) &&
