@@ -7,6 +7,7 @@ import {
 import { StickerTypes } from './metadata/stickertTypes'
 import { writeFile } from 'fs-extra'
 import converter from './converter'
+
 export class Sticker {
   private Metadata: IStickerOptions
   private sticker: Buffer | undefined

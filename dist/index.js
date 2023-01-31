@@ -14,5 +14,8 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__exportStar(require("./internal/Sticker"), exports);
+exports.createSticker = void 0;
+const Sticker_1 = require("./internal/Sticker");
+Object.defineProperty(exports, "createSticker", { enumerable: true, get: function () { return Sticker_1.createSticker; } });
+exports.default = Sticker_1.Sticker;
 __exportStar(require("./internal/metadata/stickertTypes"), exports);
