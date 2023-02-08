@@ -12,7 +12,8 @@
   "license": "MIT",
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "tsc",
+    "build": "tsc -p .",
+    "postinstall": "tsc -p .",
     "clean:media": "rm -rf *.webp && rm -rf *.jpg"
   },
   "dependencies": {
