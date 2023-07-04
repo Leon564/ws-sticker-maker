@@ -11,9 +11,8 @@
   "author": "Leon564",
   "license": "MIT",
   "scripts": {
-    "build": "tsc -p .",
-    "postinstall": "tsc -p .",
-    "clean:media": "rm -rf *.webp && rm -rf *.jpg"
+    "prepack": "npm run build",
+    "build": "tsc"
   },
   "dependencies": {
     "@ffmpeg-installer/ffmpeg": "^1.1.0",
