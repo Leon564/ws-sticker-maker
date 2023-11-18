@@ -1,200 +1,230 @@
-import { StickerTypes } from '../internal/metadata/stickertTypes'
+import { StickerTypes } from "../internal/metadata/stickertTypes";
 
-export type Background = { r: number; g: number; b: number; alpha: number }
+export type Background = { r: number; g: number; b: number; alpha: number };
 
 export interface IstickerConfig {
-  pack?: string
-  author?: string
-  id?: string
-  categories?: Categories[]
+  pack?: string;
+  author?: string;
+  id?: string;
+  categories?: Categories[];
 }
 export interface IStickerOptions extends IstickerConfig {
-  image?: string | Buffer
-  background?: Background
-  fps?: number
-  loop?: number
-  quality?: number
-  type?: StickerTypes | string
-  effort?: number
-  size?: number
-  duration?: number
-  fileSize?: number
+  image?: string | Buffer;
+  background?: Background;
+  fps?: number;
+  loop?: number;
+  quality?: number;
+  type?: StickerTypes | string;
+  effort?: number;
+  size?: number;
+  duration?: number;
+  fileSize?: number;
 }
 
 export interface IConvertOptions extends IStickerOptions {
-  isAnimated?: boolean
-  fileMimeType?: string
-  ext?: string
+  isAnimated?: boolean;
+  fileMimeType?: string;
+  ext?: string;
 }
 
 export type Message = {
-  sticker: Buffer
-}
+  sticker: Buffer;
+};
 
-export type Metadata = IstickerConfig | IStickerOptions
+export type Metadata = IstickerConfig | IStickerOptions;
 
 export interface IRawMetadata {
-  emojis: string[]
-  'sticker-pack-id': string
-  'sticker-pack-name': string
-  'sticker-pack-publisher': string
+  emojis: string[];
+  "sticker-pack-id": string;
+  "sticker-pack-name": string;
+  "sticker-pack-publisher": string;
 }
 
 export type VideoOptios = {
-  image: Buffer | string
-  fps?: number
-  size?: number
-  duration?: number
-  fileSize?: number
-  loop?: number
-  crop?: boolean
-}
+  image: Buffer | string;
+  fps?: number;
+  size?: number;
+  duration?: number;
+  fileSize?: number;
+  loop?: number;
+  crop?: boolean;
+};
 
 type Love =
-  | '❤'
-  | '😍'
-  | '😘'
-  | '💕'
-  | '😻'
-  | '💑'
-  | '👩‍❤‍👩'
-  | '👨‍❤‍👨'
-  | '💏'
-  | '👩‍❤‍💋‍👩'
-  | '👨‍❤‍💋‍👨'
-  | '🧡'
-  | '💛'
-  | '💚'
-  | '💙'
-  | '💜'
-  | '🖤'
-  | '💔'
-  | '❣'
-  | '💞'
-  | '💓'
-  | '💗'
-  | '💖'
-  | '💘'
-  | '💝'
-  | '💟'
-  | '♥'
-  | '💌'
-  | '💋'
-  | '👩‍❤️‍💋‍👩'
-  | '👨‍❤️‍💋‍👨'
-  | '👩‍❤️‍👨'
-  | '👩‍❤️‍👩'
-  | '👨‍❤️‍👨'
-  | '👩‍❤️‍💋‍👨'
-  | '👬'
-  | '👭'
-  | '👫'
-  | '🥰'
-  | '😚'
-  | '😙'
-  | '👄'
-  | '🌹'
-  | '😽'
-  | '❣️'
-  | '❤️'
+  | "❤"
+  | "😍"
+  | "😘"
+  | "💕"
+  | "😻"
+  | "💑"
+  | "👩‍❤‍👩"
+  | "👨‍❤‍👨"
+  | "💏"
+  | "👩‍❤‍💋‍👩"
+  | "👨‍❤‍💋‍👨"
+  | "🧡"
+  | "💛"
+  | "💚"
+  | "💙"
+  | "💜"
+  | "🖤"
+  | "💔"
+  | "❣"
+  | "💞"
+  | "💓"
+  | "💗"
+  | "💖"
+  | "💘"
+  | "💝"
+  | "💟"
+  | "♥"
+  | "💌"
+  | "💋"
+  | "👩‍❤️‍💋‍👩"
+  | "👨‍❤️‍💋‍👨"
+  | "👩‍❤️‍👨"
+  | "👩‍❤️‍👩"
+  | "👨‍❤️‍👨"
+  | "👩‍❤️‍💋‍👨"
+  | "👬"
+  | "👭"
+  | "👫"
+  | "🥰"
+  | "😚"
+  | "😙"
+  | "👄"
+  | "🌹"
+  | "😽"
+  | "❣️"
+  | "❤️";
 type Happy =
-  | '😀'
-  | '😃'
-  | '😄'
-  | '😁'
-  | '😆'
-  | '😅'
-  | '😂'
-  | '🤣'
-  | '🙂'
-  | '😛'
-  | '😝'
-  | '😜'
-  | '🤪'
-  | '🤗'
-  | '😺'
-  | '😸'
-  | '😹'
-  | '☺'
-  | '😌'
-  | '😉'
-  | '🤗'
-  | '😊'
+  | "😀"
+  | "😃"
+  | "😄"
+  | "😁"
+  | "😆"
+  | "😅"
+  | "😂"
+  | "🤣"
+  | "🙂"
+  | "😛"
+  | "😝"
+  | "😜"
+  | "🤪"
+  | "🤗"
+  | "😺"
+  | "😸"
+  | "😹"
+  | "☺"
+  | "😌"
+  | "😉"
+  | "🤗"
+  | "😊";
 type Sad =
-  | '☹'
-  | '😣'
-  | '😖'
-  | '😫'
-  | '😩'
-  | '😢'
-  | '😭'
-  | '😞'
-  | '😔'
-  | '😟'
-  | '😕'
-  | '😤'
-  | '😠'
-  | '😥'
-  | '😰'
-  | '😨'
-  | '😿'
-  | '😾'
-  | '😓'
-  | '🙍‍♂'
-  | '🙍‍♀'
-  | '💔'
-  | '🙁'
-  | '🥺'
-  | '🤕'
-  | '☔️'
-  | '⛈'
-  | '🌩'
-  | '🌧'
+  | "☹"
+  | "😣"
+  | "😖"
+  | "😫"
+  | "😩"
+  | "😢"
+  | "😭"
+  | "😞"
+  | "😔"
+  | "😟"
+  | "😕"
+  | "😤"
+  | "😠"
+  | "😥"
+  | "😰"
+  | "😨"
+  | "😿"
+  | "😾"
+  | "😓"
+  | "🙍‍♂"
+  | "🙍‍♀"
+  | "💔"
+  | "🙁"
+  | "🥺"
+  | "🤕"
+  | "☔️"
+  | "⛈"
+  | "🌩"
+  | "🌧";
 type Angry =
-  | '😯'
-  | '😦'
-  | '😧'
-  | '😮'
-  | '😲'
-  | '🙀'
-  | '😱'
-  | '🤯'
-  | '😳'
-  | '❗'
-  | '❕'
-  | '🤬'
-  | '😡'
-  | '😠'
-  | '🙄'
-  | '👿'
-  | '😾'
-  | '😤'
-  | '💢'
-  | '👺'
-  | '🗯️'
-  | '😒'
-  | '🥵'
-type Greet = '👋'
+  | "😯"
+  | "😦"
+  | "😧"
+  | "😮"
+  | "😲"
+  | "🙀"
+  | "😱"
+  | "🤯"
+  | "😳"
+  | "❗"
+  | "❕"
+  | "🤬"
+  | "😡"
+  | "😠"
+  | "🙄"
+  | "👿"
+  | "😾"
+  | "😤"
+  | "💢"
+  | "👺"
+  | "🗯️"
+  | "😒"
+  | "🥵";
+type Greet = "👋";
 type Celebrate =
-  | '🎊'
-  | '🎉'
-  | '🎁'
-  | '🎈'
-  | '👯‍♂️'
-  | '👯'
-  | '👯‍♀️'
-  | '💃'
-  | '🕺'
-  | '🔥'
-  | '⭐️'
-  | '✨'
-  | '💫'
-  | '🎇'
-  | '🎆'
-  | '🍻'
-  | '🥂'
-  | '🍾'
-  | '🎂'
-  | '🍰'
+  | "🎊"
+  | "🎉"
+  | "🎁"
+  | "🎈"
+  | "👯‍♂️"
+  | "👯"
+  | "👯‍♀️"
+  | "💃"
+  | "🕺"
+  | "🔥"
+  | "⭐️"
+  | "✨"
+  | "💫"
+  | "🎇"
+  | "🎆"
+  | "🍻"
+  | "🥂"
+  | "🍾"
+  | "🎂"
+  | "🍰";
 
-export type Categories = Love | Happy | Sad | Angry | Greet | Celebrate
+export type Categories = Love | Happy | Sad | Angry | Greet | Celebrate;
+
+export type StickerToImageOptions = {
+  format?: Imageformats;
+  size?: number;
+  quality?: number;
+  background?: Background;
+};
+
+export type Imageformats =
+  | "avif"
+  | "dz"
+  | "fits"
+  | "gif"
+  | "heif"
+  | "input"
+  | "jpeg"
+  | "jpg"
+  | "jp2"
+  | "jxl"
+  | "magick"
+  | "openslide"
+  | "pdf"
+  | "png"
+  | "ppm"
+  | "raw"
+  | "svg"
+  | "tiff"
+  | "tif"
+  | "v"
+  | "webp";
