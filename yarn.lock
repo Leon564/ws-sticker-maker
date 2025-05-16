@@ -181,11 +181,6 @@
   resolved "https://registry.yarnpkg.com/@tokenizer/token/-/token-0.3.0.tgz#fe98a93fe789247e998c75e74e9c7c63217aa276"
   integrity sha512-OvjF+z51L3ov0OyAU0duzsYuvO01PH7x4t6DJx+guahgTnBHkhJdG7soQeTSFLWN3efnHyibZ4Z8l2EuWwJN3A==
 
-"@types/ffmpeg-installer__ffmpeg@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@types/ffmpeg-installer__ffmpeg/-/ffmpeg-installer__ffmpeg-1.0.0.tgz#e362967095310e4716e321dfa3b66bb4f68bb77d"
-  integrity sha512-EkTrOTP4yWf6otjTl/Q3kI6g95Ita7X6hBIjHoKuR7SJ/htwmCedhFUwHCm0Y1lNqAIS46+ZiUG5YqxBP5zoWQ==
-
 "@types/fluent-ffmpeg@^2.1.20":
   version "2.1.20"
   resolved "https://registry.yarnpkg.com/@types/fluent-ffmpeg/-/fluent-ffmpeg-2.1.20.tgz#3b5f42fc8263761d58284fa46ee6759a64ce54ac"
